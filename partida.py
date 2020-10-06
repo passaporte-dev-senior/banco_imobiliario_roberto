@@ -15,7 +15,7 @@ class Tabuleiro:
         self.jogadores = jogadores
         self.propriedades = propriedades
 
-    def propriedade(self, pos):
+    def obter_propriedade(self, pos):
         return self.propriedades[pos]
 
     def jogadores_ativos(self):
@@ -45,20 +45,16 @@ class Partida:
         if len(ativos) == 1:
             return ativos[0]
         if self.rodada > 50:
-            return ativos[0]
+            return max(ativos, key=lambda j: j.saldo)
 
         return None
 
     def jogar_rodada(self):
 
-        if len(self.tabuleiro.jogadores_ativos()) == 1:
-            logging.info("***Temos um vencedor ***")
-            logging.info(self.ganhador())
-            self.executando = False
-            return
-
         self.rodada += 1
-        if self.rodada > 50:
+        ativos = self.tabuleiro.jogadores_ativos()
+
+        if len(ativos) == 1 or self.rodada > 50:
             self.executando = False
             logging.info("***Temos um vencedor ***")
             logging.info(self.ganhador())
@@ -66,16 +62,18 @@ class Partida:
 
         for jogador in self.tabuleiro.jogadores:
             if jogador.ativo:
-                self.jogar(jogador)
+                self.fazer_jogada(jogador)
             logging.info("{0}: {1}".format(self.rodada, jogador))
 
-    def jogar(self, jogador):
+    def fazer_jogada(self, jogador):
 
         pos, acumular_saldo = self.proxima_pos(jogador)
+        jogador.andar(pos)
+
         if acumular_saldo:
             jogador.saldo += 100
 
-        propriedade = self.tabuleiro.propriedade(pos)
+        propriedade = self.tabuleiro.obter_propriedade(pos)
         if propriedade.proprietario is None:
             if jogador.comprar(propriedade.aluguel, propriedade.custo_venda):
                 jogador.debitar(propriedade.custo_venda)
@@ -85,8 +83,6 @@ class Partida:
             propriedade.proprietario.creditar(propriedade.aluguel)
             if not jogador.ativo:
                 self.tabuleiro.liberar_propriedades(jogador)
-
-        jogador.andar(pos)
 
     def proxima_pos(self, jogador):
         acumular_saldo = False
