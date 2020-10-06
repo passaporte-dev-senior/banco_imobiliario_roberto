@@ -12,8 +12,8 @@ class Dado:
 
 class Tabuleiro:
     def __init__(self):
-        QUANTIDADE_PROPRIEDADES = 20
         self.jogadores = criar_jogadores()
+        QUANTIDADE_PROPRIEDADES = 20
         self.propriedades = criar_propriedades(QUANTIDADE_PROPRIEDADES)
 
     def obter_propriedade(self, pos):
@@ -50,7 +50,6 @@ class Partida:
         return None
 
     def jogar_rodada(self):
-
         self.rodada += 1
         jogadores_ativos = self.tabuleiro.jogadores_ativos()
 
@@ -73,7 +72,7 @@ class Partida:
             jogador.creditar(100)
 
         propriedade = self.tabuleiro.obter_propriedade(pos)
-        if propriedade.possui_proprietario():
+        if not propriedade.possui_proprietario():
             if jogador.comprar(propriedade.aluguel, propriedade.custo_venda):
                 jogador.debitar(propriedade.custo_venda)
                 propriedade.adicionar_proprietario(jogador)

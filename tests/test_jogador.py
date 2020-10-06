@@ -15,8 +15,8 @@ def test_jogador_andar():
     assert jogador_01.pos == 0
     jogador_01.andar(10)
     assert jogador_01.pos == 10
-    # jogador_01.andar(20)
-    # assert jogador_01.pos == 20
+    jogador_01.andar(20)
+    assert jogador_01.pos == 20
     # jogador_01.andar(21)
     # assert jogador_01.pos == 1
 
