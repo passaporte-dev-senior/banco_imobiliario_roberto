@@ -26,8 +26,8 @@ class Jogador:
     def creditar(self, valor):
         self.saldo = self.saldo + valor
 
-    def __str__(self):
-        return '[{0} ({1}) p:{2} s:{3}]'.format(self.nome, self.ativo, self.pos, self.saldo)
+    def __repr__(self):
+        return '<Jogador {0} a?:{1} p#:{2} s#:{3}>'.format(self.nome, self.ativo, self.pos, self.saldo)
 
 
 class JogadorImpulsivo(Jogador):
@@ -69,8 +69,8 @@ class JogadorAleatorio(Jogador):
         return random.choice([False, True])    
 
 
-def criar_jogadores():
+def criar_jogadores(num_jogadores):
     return (JogadorImpulsivo(),
             JogadorExigente(),
             JogadorCauteloso(),
-            JogadorAleatorio())
+            JogadorAleatorio())[:num_jogadores]

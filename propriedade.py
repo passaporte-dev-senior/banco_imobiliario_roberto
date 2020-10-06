@@ -20,6 +20,9 @@ class Propriedade:
     def possui_proprietario(self):
         return not self.proprietario is None
 
+    def __repr__(self):
+        return '<Propriedade p:{0} a#:{1} v#:{2}>'.format(self.proprietario.nome, self.aluguel, self.custo_venda)        
+
 
 def criar_propriedades(n):
     return [Propriedade() for n in range(n)]

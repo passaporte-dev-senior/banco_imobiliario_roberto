@@ -30,3 +30,9 @@ def test_partida_jogar_rodada():
     partida_01.iniciar()
     partida_01.jogar_rodada()
     assert partida_01.rodada == 1
+
+def test_partida_jogar_rodada():
+    partida_01 = Partida(2, 20)
+    partida_01.iniciar()
+    partida_01.jogar_rodada()
+    assert partida_01.rodada == 1    

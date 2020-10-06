@@ -15,15 +15,12 @@ def test_jogador_andar():
     assert jogador_01.pos == 0
     jogador_01.andar(10)
     assert jogador_01.pos == 10
-    jogador_01.andar(20)
-    assert jogador_01.pos == 20
-    # jogador_01.andar(21)
-    # assert jogador_01.pos == 1
+
 
 def test_jogador_string():
     jogador_01 = Jogador()
     jogador_01.nome = "Jogador"
-    assert str(jogador_01) == '[Jogador (True) p:0 s:300]'
+    assert str(jogador_01) == '<Jogador Jogador a?:True p#:0 s#:300>'
 
 def test_jogador_saldo():
     jogador_01 = Jogador()
