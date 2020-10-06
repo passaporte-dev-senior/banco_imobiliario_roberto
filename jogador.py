@@ -2,6 +2,10 @@ import random
 
 
 class Jogador:
+    '''
+    Define um jogador com saldo, status, posicao e nome.
+    '''
+
     def __init__(self):
         self.saldo = 300
         self.ativo = True
@@ -63,7 +67,7 @@ class JogadorAleatorio(Jogador):
 
 
 def criar_jogadores():
-    return [JogadorImpulsivo(),
+    return (JogadorImpulsivo(),
             JogadorExigente(),
             JogadorCauteloso(),
-            JogadorAleatorio()]
+            JogadorAleatorio())

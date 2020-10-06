@@ -1,38 +1,73 @@
 # Desafio do Banco Imobiliário
 
-Considere o seguinte jogo hipotético muito semelhante a Banco Imobiliário, onde várias de suas mecânicas foram simplificadas.
+# Classe Propriedade
 
-Numa partida desse jogo, os jogadores se alternam em rodadas, numa ordem definida aleatoriamente no começo da partida. Os jogadores sempre começam uma partida com saldo de 300 para cada um.
+> Define um imóvel que pode ser alugado ou vendido a um jogador.
 
-Nesse jogo, o tabuleiro é composto por 20 propriedades em sequência. Cada propriedade tem um custo de venda, um valor de aluguel, um proprietário caso já estejam compradas, e seguem uma determinada ordem no tabuleiro.
+### Responsabilidades:
 
-Não é possível construir hotéis e nenhuma outra melhoria sobre as propriedades do tabuleiro, por simplicidade do problema.
+-   Possui proprietario, aluguel e custo de venda.
+-   Adiciona o proprietário.
+-   Remove o proprietário.
 
-No começo da sua vez, o jogador joga um dado equiprovável de 6 faces que determina quantos espaços no tabuleiro o jogador vai andar.
+### Colaborações:
 
-Ao cair em uma propriedade sem proprietário, o jogador pode escolher entre comprar ou não a propriedade. Esse é a única forma pela qual uma propriedade pode ser comprada.
+-   Jogador
 
-Ao cair em uma propriedade que tem proprietário, ele deve pagar ao proprietário o valor do aluguel da propriedade.
+# Classe Jogador
 
-Ao completar uma volta no tabuleiro, o jogador ganha 100 de saldo.
+> Define um participante do jogo.
 
-Jogadores só podem comprar propriedades caso ela não tenha dono e o jogador tenha o dinheiro da venda.
+### Responsabilidades:
 
-Ao comprar uma propriedade, o jogador perde o dinheiro e ganha a posse da propriedade.
+-   Possui saldo, status, posicao e nome.
+-   Se elimina do jogo.
+-   Anda.
+-   Credita saldo.
+-   Debita saldo.
+-   Compra (decide se deseja comprar).
 
-Cada um dos jogadores tem uma implementação de comportamento diferente, que dita as ações que eles vão tomar ao longo do jogo. Mais detalhes sobre o comportamento serão explicados mais à frente.
+### Colaborações:
 
-Um jogador que fica com saldo negativo perde o jogo, e não joga mais. Perde suas propriedades e portanto podem ser compradas por qualquer outro jogador.
+# Dado
 
-Termina quando restar somente um jogador com saldo positivo, a qualquer momento da partida. Esse jogador é declarado o vencedor.
+> Representa um dado.
 
-Desejamos rodar uma simulação para decidir qual a melhor estratégia. Para isso, idealizamos uma partida com 4 diferentes tipos de possíveis jogadores.
+### Responsabilidades:
 
-Os comportamentos definidos são:
+-   Sorteia um número aleatorio entre 1 e 6.
 
--   O jogador impulsivo compra qualquer propriedade sobre a qual ele parar.
--   O jogador exigente compra qualquer propriedade, desde que o valor do aluguel dela seja maior do que 50.
--   O jogador cauteloso compra qualquer propriedade desde que ele tenha uma reserva de 80 saldo sobrando depois de realizada a compra.
--   O jogador aleatório compra a propriedade que ele parar em cima com probabilidade de 50%.
+### Colaborações:
 
-Caso o jogo demore muito, como é de costume em jogos dessa natureza, o jogo termina na milésima rodada com a vitória do jogador com mais saldo. O critério de desempate é a ordem de turno dos jogadores nesta partida.
+# Tabuleiro
+
+> Representa um tabuleiro que controla os jogadores e as propriedades.
+
+### Responsabilidades:
+
+-   Possui propriedades e jogadores.
+-   Conhece os jogadores ativos.
+-   Remove o jagador de propriedades a qual ele é proprietário.
+
+### Colaborações:
+
+-   Jogador
+-   Propriedade
+
+# Partida
+
+> Controla os detalhes da partida, suas rodadas e regras.
+
+### Responsabilidades:
+
+-   Inicia uma partida.
+-   Termina um partida.
+-   Joga um rodada.
+-   Sabe quem é o jogador vencedor.
+-   Faz uma jogada com um jogador.
+
+### Colaborações:
+
+-   Jogador
+-   Propriedade
+-   Tabuleiro
