@@ -63,7 +63,10 @@ class JogadorAleatorio(Jogador):
         self.nome = 'Aleatorio'
 
     def comprar(self, aluguel, custo_venda):
-        return random.choice([False, True])
+        return self.random_choice()
+
+    def random_choice(self):
+        return random.choice([False, True])    
 
 
 def criar_jogadores():

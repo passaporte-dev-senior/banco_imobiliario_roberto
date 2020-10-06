@@ -11,9 +11,10 @@ class Dado:
 
 
 class Tabuleiro:
-    def __init__(self, jogadores, propriedades):
-        self.jogadores = jogadores
-        self.propriedades = propriedades
+    def __init__(self):
+        QUANTIDADE_PROPRIEDADES = 20
+        self.jogadores = criar_jogadores()
+        self.propriedades = criar_propriedades(QUANTIDADE_PROPRIEDADES)
 
     def obter_propriedade(self, pos):
         return self.propriedades[pos]
@@ -29,10 +30,9 @@ class Tabuleiro:
 
 class Partida:
     def __init__(self):
+        self.tabuleiro = Tabuleiro()
         self.executando = False
         self.rodada = 0
-        self.tabuleiro = Tabuleiro(criar_jogadores(),
-                                   criar_propriedades())
 
     def iniciar(self):
         self.executando = True
@@ -52,17 +52,16 @@ class Partida:
     def jogar_rodada(self):
 
         self.rodada += 1
-        ativos = self.tabuleiro.jogadores_ativos()
+        jogadores_ativos = self.tabuleiro.jogadores_ativos()
 
-        if len(ativos) == 1 or self.rodada > 50:
+        if len(jogadores_ativos) == 1 or self.rodada > 50:
             self.executando = False
             logging.info("***Temos um vencedor ***")
             logging.info(self.ganhador())
             return
 
-        for jogador in self.tabuleiro.jogadores:
-            if jogador.ativo:
-                self.fazer_jogada(jogador)
+        for jogador in jogadores_ativos:
+            self.fazer_jogada(jogador)
             logging.info("{0}: {1}".format(self.rodada, jogador))
 
     def fazer_jogada(self, jogador):
@@ -71,10 +70,10 @@ class Partida:
         jogador.andar(pos)
 
         if acumular_saldo:
-            jogador.saldo += 100
+            jogador.creditar(100)
 
         propriedade = self.tabuleiro.obter_propriedade(pos)
-        if propriedade.proprietario is None:
+        if propriedade.possui_proprietario():
             if jogador.comprar(propriedade.aluguel, propriedade.custo_venda):
                 jogador.debitar(propriedade.custo_venda)
                 propriedade.adicionar_proprietario(jogador)

@@ -17,6 +17,9 @@ class Propriedade:
     def adicionar_proprietario(self, jogador):
         self.proprietario = jogador
 
+    def possui_proprietario(self):
+        return not self.proprietario is None
 
-def criar_propriedades():
-    return [Propriedade() for n in range(20)]
+
+def criar_propriedades(n):
+    return [Propriedade() for n in range(n)]
