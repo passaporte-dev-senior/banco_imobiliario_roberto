@@ -5,7 +5,8 @@ import logging
 
 class Tabuleiro:
     def __init__(self, num_jogador, num_propriedades):
-        self.jogadores = criar_jogadores(num_jogador)
+        jogadores = criar_jogadores(num_jogador)
+        self.jogadores = random.sample(jogadores, k=len(jogadores))
         self.propriedades = criar_propriedades(num_propriedades)
 
     @property
