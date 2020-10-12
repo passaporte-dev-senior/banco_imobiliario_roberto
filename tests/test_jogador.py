@@ -1,6 +1,5 @@
-from jogador import (Jogador, JogadorImpulsivo, JogadorExigente, JogadorCauteloso, JogadorAleatorio)
-from propriedade import Propriedade
-from partida import Dado, Tabuleiro
+from banco.jogador import (Jogador, JogadorImpulsivo, JogadorExigente, JogadorCauteloso, JogadorAleatorio)
+
 
 
 def test_jogador_init():

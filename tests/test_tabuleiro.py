@@ -1,6 +1,4 @@
-from jogador import Jogador
-from propriedade import Propriedade
-from partida import Dado, Tabuleiro
+from banco.partida import Tabuleiro
 
 
 def test_tabuleiro_init():

@@ -1,7 +1,7 @@
 import random
-from jogador import criar_jogadores
-from propriedade import criar_propriedades
-from tabuleiro import Tabuleiro
+from .jogador import criar_jogadores
+from .propriedade import criar_propriedades
+from .tabuleiro import Tabuleiro
 import logging
 
 

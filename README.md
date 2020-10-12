@@ -71,3 +71,5 @@
 -   Jogador
 -   Propriedade
 -   Tabuleiro
+
+`pytest --cov=banco tests/`

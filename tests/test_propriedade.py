@@ -1,6 +1,5 @@
-from jogador import Jogador
-from propriedade import Propriedade
-from partida import Dado, Tabuleiro
+from banco.jogador import Jogador
+from banco.propriedade import Propriedade
 
 
 def test_inicializacao():
@@ -8,6 +7,7 @@ def test_inicializacao():
     assert propriedade_01.custo_venda > 0
     assert propriedade_01.aluguel > 0
     assert propriedade_01.proprietario is None
+    assert 'Propriedade' in repr(propriedade_01)  
 
 def test_proprietario():
     jogador_01 = Jogador()
@@ -17,4 +17,3 @@ def test_proprietario():
     assert propriedade_01.proprietario == jogador_01
     propriedade_01.remover_proprietario()
     assert not propriedade_01.possui_proprietario()
-    

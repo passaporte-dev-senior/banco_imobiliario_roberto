@@ -1,6 +1,4 @@
-from jogador import Jogador
-from propriedade import Propriedade
-from partida import Partida, Dado, Tabuleiro
+from banco.partida import Partida, Dado
 
 
 def test_dado_seed():

@@ -1,7 +1,7 @@
 import random
-from jogador import criar_jogadores
-from propriedade import criar_propriedades
-import logging
+from .jogador import criar_jogadores
+from .propriedade import criar_propriedades
+
 
 class Tabuleiro:
     def __init__(self, num_jogador, num_propriedades):
@@ -24,9 +24,3 @@ class Tabuleiro:
             if propriedade.proprietario == jogador:
                 propriedade.remover_proprietario()
 
-    def __repr__(self):
-        lst = ['Tabuleiro']
-        for index, p in enumerate(self.propriedades):
-            nome = p.proprietario.nome if p.proprietario else '---'  
-            lst.append("{0}: {1}".format(index, nome))
-        return ", ".join(lst)
