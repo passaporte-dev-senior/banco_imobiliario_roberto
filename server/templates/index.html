@@ -9,7 +9,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    <style>
+        .table td, .table th {
+            padding: .2rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+        form {
+            display: inline;
+        }
+    </style>
     <title>Banco Imobiliário</title>
 </head>
 
@@ -34,51 +43,63 @@
             <button class="btn btn-info" type="submit">Reset</button>
         </form>
 
-        <h2 class="text-center">Placar</h2>
-        <table class="table">
-            <tr>
-                <th>&nbsp;</th>
-                {% for jogador in partida.tabuleiro.jogadores %}
-                <th>{{ jogador.nome }}</th>
-                {% endfor %}
-            </tr>
-            <tr>
-                <th>Pos</th>
-                {% for jogador in partida.tabuleiro.jogadores %}
-                <td>{{ jogador.pos }}</td>
-                {% endfor %}
-            </tr>
-            <tr>
-                <th>Saldo</th>
-                {% for jogador in partida.tabuleiro.jogadores %}
-                <td>{{ jogador.saldo }}</td>
-                {% endfor %}
-            </tr>
-            <tr>
-                <th>Ativo</th>
-                {% for jogador in partida.tabuleiro.jogadores %}
-                <td>{{ jogador.ativo }}</td>
-                {% endfor %}
-            </tr>            
-        </table>
 
-        <h2 class="text-center">Tabuleiro</h2>
-        <table class="table">
+        <table style="width: 100%;">
             <tr>
-                <th>Posição</th>
-                <th>Aluguel</th>
-                <th>Custo de Venda</th>
-                <th>Proprietário</th>
+                <td style="vertical-align: top;">
+                    <h2 class="text-center">Placar</h2>
+                    <table class="table">
+                        <tr>
+                            <th>&nbsp;</th>
+                            {% for jogador in partida.tabuleiro.jogadores %}
+                            <th>{{ jogador.nome }}</th>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th>Pos</th>
+                            {% for jogador in partida.tabuleiro.jogadores %}
+                            <td>{{ jogador.pos }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th>Saldo</th>
+                            {% for jogador in partida.tabuleiro.jogadores %}
+                            <td>{{ jogador.saldo }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th>Ativo</th>
+                            {% for jogador in partida.tabuleiro.jogadores %}
+                            <td>{{ jogador.ativo }}</td>
+                            {% endfor %}
+                        </tr>            
+                    </table>                    
+                </td>
+                <td>&nbsp;</td>
+                <td style="vertical-align: top;">
+                    <h2 class="text-center">Tabuleiro</h2>
+                    <table class="table">
+                        <tr>
+                            <th>Posição</th>
+                            <th>Aluguel</th>
+                            <th>Venda</th>
+                            <th>Proprietário</th>
+                        </tr>
+                        {% for propriedade in partida.tabuleiro.propriedades %}
+                        <tr>
+                            <th>{{ loop.index0 }}</th>
+                            <td>{{ propriedade.aluguel }}</td>
+                            <td>{{ propriedade.custo_venda }}</td>
+                            <td>{{ propriedade.nome_proprietario }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
             </tr>
-            {% for propriedade in partida.tabuleiro.propriedades %}
-            <tr>
-                <th>{{ loop.index0 }}</th>
-                <td>{{ propriedade.aluguel }}</td>
-                <td>{{ propriedade.custo_venda }}</td>
-                <td>{{ propriedade.nome_proprietario }}</td>
-            </tr>
-            {% endfor %}
         </table>
+        
+
+        
     </div>
 
     <!-- Optional JavaScript -->

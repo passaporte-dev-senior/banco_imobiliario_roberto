@@ -4,14 +4,18 @@ from .propriedade import criar_propriedades
 
 
 class Tabuleiro:
-    def __init__(self, num_jogador, num_propriedades):
-        jogadores = criar_jogadores(num_jogador)
+    def __init__(self, qtd_jogadores, qtd_propriedades):
+        jogadores = criar_jogadores(qtd_jogadores)
         self.jogadores = random.sample(jogadores, k=len(jogadores))
-        self.propriedades = criar_propriedades(num_propriedades)
+        self.propriedades = criar_propriedades(qtd_propriedades)
 
     @property
-    def quantidade_propriedades(self):
+    def qtd_propriedades(self):
         return len(self.propriedades)
+
+    @property
+    def qtd_jogadores(self):
+        return len(self.jogadores)
 
     def obter_propriedade(self, pos):
         return self.propriedades[pos]
@@ -23,4 +27,3 @@ class Tabuleiro:
         for propriedade in self.propriedades:
             if propriedade.proprietario == jogador:
                 propriedade.remover_proprietario()
-

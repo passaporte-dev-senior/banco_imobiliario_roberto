@@ -20,5 +20,5 @@ def index():
         if not partida.terminou():
             partida.jogar_rodada()
             
-    ganhador = partida.ganhador()
+    ganhador = partida.vencedor()
     return render_template('index.html', ganhador=ganhador, partida=partida)

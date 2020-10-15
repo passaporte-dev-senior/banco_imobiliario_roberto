@@ -72,4 +72,4 @@
 -   Propriedade
 -   Tabuleiro
 
-`pytest --cov=banco tests/`
+`pytest --cov=banco --cov-report html tests/`
